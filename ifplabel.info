@@ -1,0 +1,9 @@
+name = Openlayers IFP Style
+description = An Openlayers style that adds a labels to a feature marker style.
+core = 7.x
+dependencies[] = openlayers
+package = "Openlayers"
+
+registry_autoload[] = PSR-0
+registry_autoload[] = PSR-4
+
