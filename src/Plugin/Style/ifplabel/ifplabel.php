@@ -6,6 +6,7 @@
 
 namespace Drupal\ifplabel\Plugin\Style\ifplabel;
 use Drupal\openlayers\Component\Annotation\OpenlayersPlugin;
+use Drupal\openlayers\Openlayers;
 use Drupal\openlayers\Types\Style;
 
 /**
