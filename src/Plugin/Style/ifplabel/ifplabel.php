@@ -4,7 +4,7 @@
  * Style: ifplabel.
  */
 
-namespace Drupal\ifplabel\Plugin\Control\ifplabel;
+namespace Drupal\ifplabel\Plugin\Style\ifplabel;
 use Drupal\openlayers\Component\Annotation\OpenlayersPlugin;
 use Drupal\openlayers\Types\Style;
 
