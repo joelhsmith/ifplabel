@@ -2,6 +2,11 @@ Drupal.openlayers.pluginManager.register({
   fs: 'openlayers.Style:ifplabel',
   init: function(data) {
     return function (feature, resolution) {
+
+      // What is the 'resolution' argument? http://bit.ly/28QFprM
+      // At zoom level 20, 1px on the map equals 0.15 meters (6 inches)
+      // Example: at zoom level 20 a cube is about 22px * 6 inches = ~11 feet square
+
       if (!(feature instanceof ol.Feature)) {
         return null;
       }
@@ -11,13 +16,19 @@ Drupal.openlayers.pluginManager.register({
       var thename = feature.get('name') || '';
       var thedescription = feature.get('description') || '';
 
+      /**
+       * Generate propotionate font size
+       */
+
+      // Get resolution
       var theresolution = resolution;
-      // this is better (2x) - 1/2
-      var thefontsize = Math.round(((100 - (theresolution * 100))) / (theresolution * 200));
+      // Convert resolution into a font-size commensurate to the current zoom level.
+      var thefontsize = (((100 - (theresolution * 100)) / (theresolution * 200))).toFixed(2);
 
+      /**
+       * Find the person's name in the Teaser description
+       */
       thedescription = jQuery(thedescription).find('h2').text();
-
-      console.log(thedescription);
 
       if (thedescription.length) {
         thelabel = thedescription;
