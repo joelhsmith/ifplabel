@@ -21,11 +21,13 @@ class ifplabel extends Style {
    * {@inheritdoc}
    */
   public function optionsForm(array &$form, array &$form_state) {
-    $form['options']['default'] = array(
-      '#type' => 'fieldset',
-      '#title' => t('Default'),
-      '#description' => 'There are no options for this static label type',
-      '#collapsible' => FALSE,
+    $form['options']['default']['image']['fill']['color'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Fill color',
+      '#field_prefix' => 'rgba(',
+      '#field_suffix' => ')',
+      '#default_value' => $this->getOption(array('default', 'image', 'fill', 'color'), '255,255,255,0.4'),
+      '#required' => TRUE,
     );
   }
 
@@ -36,13 +38,6 @@ class ifplabel extends Style {
    */
   public function optionsFormSubmit(array $form, array &$form_state) {
     parent::optionsFormSubmit($form, $form_state);
-
-    $options = $this->getOptions();
-    foreach (Openlayers::getGeometryTypes() as $geometry_type => $geometry) {
-      if ((bool) $options[$geometry_type]['enabled'] === FALSE) {
-        unset($options[$geometry_type]);
-      }
-    }
 
     $this->setOptions($options);
     $form_state['values']['options'] = $options;
