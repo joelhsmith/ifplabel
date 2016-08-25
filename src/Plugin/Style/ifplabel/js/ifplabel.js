@@ -13,6 +13,7 @@ Drupal.openlayers.pluginManager.register({
       var geometry = feature.getGeometry().getType();
       var geometry_style = data.opt[geometry] || data.opt['default'];
       var thelabel;
+      var thecolor = feature.get('color') || '';
       var thename = feature.get('name') || '';
       var thedescription = feature.get('description') || '';
 
@@ -39,14 +40,23 @@ Drupal.openlayers.pluginManager.register({
       return [
 
         new ol.style.Style({
-
+          image: new ol.style.Circle({
+            fill: new ol.style.Fill({
+              color: 'rgba(' + geometry_style.image.fill.color + ')'
+            }),
+            stroke: new ol.style.Stroke({
+              width: 1,
+              color: 'lightgrey'
+            }),
+            radius: 8
+          }),
           text: new ol.style.Text({
             font: thefontsize + 'px helvetica,sans-serif',
             text: thelabel,
             rotation: -51,
             stroke: new ol.style.Stroke({
               color: '#fff',
-              width: 2
+              width: 3
             })
           })
         })
