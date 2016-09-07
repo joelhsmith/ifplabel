@@ -39,6 +39,8 @@ class ifplabel extends Style {
   public function optionsFormSubmit(array $form, array &$form_state) {
     parent::optionsFormSubmit($form, $form_state);
 
+    $options = $this->getOptions();
+
     $this->setOptions($options);
     $form_state['values']['options'] = $options;
     parent::optionsFormSubmit($form, $form_state);

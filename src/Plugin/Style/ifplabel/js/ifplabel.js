@@ -46,7 +46,7 @@ Drupal.openlayers.pluginManager.register({
             }),
             stroke: new ol.style.Stroke({
               width: 1,
-              color: 'lightgrey'
+              color: 'transparent'
             }),
             radius: 8
           }),
@@ -56,7 +56,7 @@ Drupal.openlayers.pluginManager.register({
             rotation: -51,
             stroke: new ol.style.Stroke({
               color: '#fff',
-              width: 3
+              width: 4
             })
           })
         })
