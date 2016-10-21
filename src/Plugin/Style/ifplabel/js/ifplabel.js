@@ -12,29 +12,30 @@ Drupal.openlayers.pluginManager.register({
       }
       var geometry = feature.getGeometry().getType();
       var geometry_style = data.opt[geometry] || data.opt['default'];
-      var thelabel;
-      var thecolor = feature.get('color') || '';
-      var thename = feature.get('name') || '';
-      var thedescription = feature.get('description') || '';
+      var ifp_label;
+      var ifp_color = feature.get('color') || '';
+      var ifp_name = feature.get('name') || '';
+      var ifp_description = feature.get('description') || '';
 
       /**
        * Generate propotionate font size
        */
 
       // Get resolution
-      var theresolution = resolution;
-      // Convert resolution into a font-size commensurate to the current zoom level.
-      var thefontsize = (((100 - (theresolution * 100)) / (theresolution * 200))).toFixed(2);
+      var ifp_resolution = resolution;
+      // Convert resolution into a font-size commensurate to ifp_ current zoom level.
+      var ifp_fontsize = (((100 - (ifp_resolution * 100)) / (ifp_resolution * 200))).toFixed(2);
+      var ifp_radius = (((100 - (ifp_resolution * 100)) / (ifp_resolution * 100))).toFixed(2);
 
       /**
-       * Find the person's name in the Teaser description
+       * Find ifp_ person's name in ifp_ Teaser description
        */
-      thedescription = jQuery(thedescription).find('h2').text();
+      ifp_description = jQuery(ifp_description).find('h2').text();
 
-      if (thedescription.length) {
-        thelabel = thedescription;
+      if (ifp_description.length) {
+        ifp_label = ifp_description;
       } else {
-        thelabel = thename;
+        ifp_label = ifp_name;
       }
 
       return [
@@ -48,15 +49,15 @@ Drupal.openlayers.pluginManager.register({
               width: 1,
               color: 'transparent'
             }),
-            radius: 8
+            radius: ifp_radius
           }),
           text: new ol.style.Text({
-            font: thefontsize + 'px helvetica,sans-serif',
-            text: thelabel,
+            font: ifp_fontsize + 'px helvetica,sans-serif',
+            text: ifp_label,
             rotation: -51,
             stroke: new ol.style.Stroke({
               color: '#fff',
-              width: 4
+              width: 3
             })
           })
         })
